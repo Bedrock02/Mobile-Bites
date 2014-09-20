@@ -28,6 +28,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
 
 </head>
 
@@ -75,9 +76,24 @@
             <div class="avatar"></div>
             <div class="form-box">
                 <form action="" method=""> 
-                    <button class="btn btn-info btn-block login" type="submit">Update Truck Location</button>
-                    <button class="btn btn-info btn-block login" type="submit">Auto Update Location</button>
+                    <button class="btn btn-info btn-block login" onclick="update()">Update Truck Location</button>
+                    <button class="btn btn-info btn-block login" >Auto Update Location</button>
                 </form>
+                <script type = "text/javascript">
+                    var id = '123';
+                    var ref = new Firebase("https://vivid-fire-7357.firebaseIO.com/trucks/" + id);
+                    function update() {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            ref.push({
+                                timestamp: Date.now(),
+                                coords: {
+                                    lat: position.coords.latitude,
+                                    lng: position.coords.longitude
+                                }
+                            });
+                        });
+                    };
+                </script>
             </div>
     </div>
 </div>

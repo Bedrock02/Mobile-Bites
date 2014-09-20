@@ -4,20 +4,24 @@
     <style type="text/css">
       html, body, #map-canvas { height: 500px; width: 400px; margin: 0; padding: 0;}
     </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?sensor=false">
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
   </head>
   <body>
-  <button onclick="update()">Update</button>
-<div id="map-canvas"></div>
+    <label>Current Address: </label>
+    <span id="currentAddress" type="text"></span>
+    <button onclick="update()">Update</button>
+    <div id="map-canvas"></div>
 
     <script type="text/javascript">
       var id = '123';
       var ref = new Firebase("https://vivid-fire-7357.firebaseIO.com/trucks/" + id);
       var map;
       var marker;
+      var geocoder;
+      var currentAddress;
+      
       function update() {
         navigator.geolocation.getCurrentPosition(function(position) {
           ref.push({
@@ -29,7 +33,7 @@
           });
         });
 
-      }
+      };
 
       // Runs every time firebase data changes
       ref.on('value', function(snapshot) {
@@ -44,20 +48,37 @@
           marker.setMap(null);
         // To add the marker to the map, use the 'map' property
         var latlng = new google.maps.LatLng(coords.lat, coords.lng);
+        updateAddress(latlng);
         marker = new google.maps.Marker({
             map: map,
-            position: latlng,
+            position: latlng
         });
+
         map.setCenter(marker.getPosition());
-      }
+
+      };
+
+      function updateAddress(coords){
+        geocoder.geocode({'latLng': coords}, function(results, status){
+          if ( status == google.maps.GeocoderStatus.OK) {
+            if (results[1]){
+              currentAddress.text(results[1].formatted_address);
+            }
+          }
+        });
+      };
+      
+
       function initialize() {
         var mapOptions = {
           center: { lat: 37.7, lng: -122},
-          zoom: 10,
+          zoom: 16,
           
         };
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
+        geocoder = new google.maps.Geocoder();
+        currentAddress = $('#currentAddress');
       }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
