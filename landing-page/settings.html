@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" href="./ui-lib.min.css"></link>
+        <link rel="stylesheet" href="/ui-lib.min.css"></link>
     </head>
     <body wix-ui>
         <header class="box">
@@ -15,8 +15,9 @@
                 <div class="acc-content">
                     <p>Set the widget colors</p>
                     <ul class="list">
-                        <li wix-label="Feed title text">
-                            <div wix-param="titleColor" wix-ctrl="ColorPicker" wix-options="{startWithColor:'color-3'}"></div>
+                        <li wix-label="main-background">
+                            <div wix-param="mainBackGroundColor" wix-ctrl="ColorPicker" wix-options="{startWithColor:'color-1'}">
+                            </div>
                         </li>
                         <li wix-label="Feed entries text">
                             <div wix-param="textColor" wix-ctrl="ColorPicker" wix-options="{startWithColor:'color-1'}"></div>
@@ -30,11 +31,16 @@
                     </ul>
                 </div>
             </div>
+            <script type = "text/javascript">
+                $( document ).ready(function(){
+                    Wix.UI.initialize({});
+                });
+            </script>
             </div>
         </header>
         <!-- your settings -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="http://sslstatic.wix.com/services/js-sdk/1.28.0/js/Wix.js"></script>
-        <script src="ui-lib.min.js"></script>
+        <script src="/ui-lib.min.js"></script>
     </body>
 </html>
