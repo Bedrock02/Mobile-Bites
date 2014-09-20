@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./ui-lib.min.css"></link>
+    </head>
+    <body wix-ui>
+        <header class="box">
+            <div class="logo">
+                <img width="86" src="images/wix_icon.png" alt="logo"/>
+            </div>
+            <div class = "settings">
+                <!-- Color Pickers -->
+            <div class="acc-pane">
+                <h3>Color Settings: </h3>
+                <div class="acc-content">
+                    <p>Set the widget colors</p>
+                    <ul class="list">
+                        <li wix-label="Feed title text">
+                            <div wix-param="titleColor" wix-ctrl="ColorPicker" wix-options="{startWithColor:'color-3'}"></div>
+                        </li>
+                        <li wix-label="Feed entries text">
+                            <div wix-param="textColor" wix-ctrl="ColorPicker" wix-options="{startWithColor:'color-1'}"></div>
+                        </li>
+                        <li wix-label="Background">
+                            <div wix-param="bgColor" wix-ctrl="ColorPickerWithOpacity" wix-options="{startWithColor: 'color-3'}"></div>
+                        </li>
+                        <li wix-label="Feed background">
+                            <div wix-param="bgFeedColor" wix-ctrl="ColorPickerWithOpacity" wix-options="{startWithColor:'color-1'}"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </header>
+        <!-- your settings -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="http://sslstatic.wix.com/services/js-sdk/1.28.0/js/Wix.js"></script>
+        <script src="ui-lib.min.js"></script>
+    </body>
+</html>
