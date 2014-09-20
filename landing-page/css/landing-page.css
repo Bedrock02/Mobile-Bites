@@ -9,7 +9,7 @@ html {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    
+    font-weight: 300;
 }
 
 body,
@@ -36,7 +36,25 @@ h6 {
     background-size: cover;
 }
 
+.vendor-intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/foodtruckbkgdvendor.jpg) no-repeat center center;
+    background-size: cover;
+}
+
 .intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    -webkit-animation: zoomIn 1s ease;
+       -moz-animation: zoomIn 1s ease;
+         -o-animation: zoomIn 1s ease;
+            animation: zoomIn 1s ease;
+}
+
+.intro-message-2 {
     position: relative;
     padding-top: 20%;
     padding-bottom: 20%;
@@ -234,7 +252,9 @@ span.social {
     margin-top: 20px;
     }
 
-
+.space{
+    padding-top: 30px;
+}
 
 
 
@@ -468,5 +488,104 @@ p.copyright {
     height: 200px;
     width: 200px;
     margin-left: 20px;
+}
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+    margin-top: 40px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "OFF";
+    padding-left: 10px;
+    background-color: #EEEEEE; color: #999999;
+}
+.onoffswitch-inner:after {
+    content: "ON";
+    padding-right: 10px;
+    background-color: #2FCCFF; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    border: 2px solid #999999; border-radius: 20px;
+    position: absolute; top: 0; bottom: 0; right: 56px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
+
+
+.form-box h3 {
+    color: black;
+    font-size: 19px;
+}
+
+.onoffswitch {
+    margin: 0 auto;
+}
+
+
+
+/* Animations */
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: .3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: .3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
 }
 

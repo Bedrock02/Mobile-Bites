@@ -67,7 +67,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="intro-message">
+                    <div class="intro-message-2">
                        
 
 <div class="container">
@@ -75,13 +75,24 @@
             <div id="output"></div>
             <div class="avatar"></div>
             <div class="form-box">
-                <form action="" method=""> 
-                    <button class="btn btn-info btn-block login" onclick="update()">Update Truck Location</button>
-                    <button class="btn btn-info btn-block login" >Auto Update Location</button>
-                </form>
+                <h3>Display my current location</h3>
+                <button class="btn btn-info btn-block login" onclick="update()">Update Truck Location</button>
+                <!-- On Off Switch -->
+                <div class="onoffswitch">
+                    <input onclick = "onSwitch();" type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                    <label class="onoffswitch-label" for="myonoffswitch">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+                <button class="btn btn-info btn-block login" >Auto Update Location</button>
+                
                 <script type = "text/javascript">
                     var id = '123';
                     var ref = new Firebase("https://vivid-fire-7357.firebaseIO.com/trucks/" + id);
+                    var autoPush = false;
+                    var myTimer;
+
                     function update() {
                         navigator.geolocation.getCurrentPosition(function(position) {
                             ref.push({
@@ -93,6 +104,18 @@
                             });
                         });
                     };
+
+                    function onSwitch(){
+                        autoPush = !autoPush;
+                        if (autoPush){
+                            autoPushData();
+                        }else{
+                            clearTimeout(myVar);
+                        }
+                    };
+                    function autoPushData(){
+                        myVar = setTimeout(update,15000);
+                    }
                 </script>
             </div>
     </div>
