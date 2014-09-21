@@ -92,7 +92,8 @@
         updatePath(latlng);
         marker = new google.maps.Marker({
             map: map,
-            position: latlng
+            position: latlng,
+            icon: 'img/icon_small.png'
         });
 
         map.setCenter(marker.getPosition());
@@ -106,7 +107,7 @@
         path = new google.maps.Polyline({
             path: pathCoordinates,
             geodesic: true,
-            strokeColor: '#FF0000',
+            strokeColor: '#2356C2',
             strokeOpacity: 1.0,
             strokeWeight: 2
         });
