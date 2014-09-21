@@ -72,6 +72,8 @@
     var map;
     var marker;
     var geocoder;
+      var path;
+      var pathCoordinates = [];
     var currentAddress;
     // Runs every time firebase data changes
     ref.on('value', function(snapshot) {
@@ -87,6 +89,7 @@
         // To add the marker to the map, use the 'map' property
         var latlng = new google.maps.LatLng(coords.lat, coords.lng);
         updateAddress(latlng);
+        updatePath(latlng);
         marker = new google.maps.Marker({
             map: map,
             position: latlng
@@ -94,6 +97,21 @@
 
         map.setCenter(marker.getPosition());
     };
+      
+    function updatePath(latlng){
+        if (path)
+            path.setMap(null);
+        pathCoordinates.push(latlng);
+        pathCoordinates = pathCoordinates.splice(-3); 
+        path = new google.maps.Polyline({
+            path: pathCoordinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        path.setMap(map);
+    }
 
     function updateAddress(coords){
         geocoder.geocode({'latLng': coords}, function(results, status){
