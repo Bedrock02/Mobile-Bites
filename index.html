@@ -19,6 +19,8 @@
       var ref = new Firebase("https://vivid-fire-7357.firebaseIO.com/trucks/" + id);
       var map;
       var marker;
+      var path;
+      var pathCoordinates = [];
       var geocoder;
       var currentAddress;
       var latlng;
@@ -53,6 +55,7 @@
         // To add the marker to the map, use the 'map' property
         latlng = new google.maps.LatLng(coords.lat, coords.lng);
         updateAddress(latlng);
+        updatePath(latlng);
         marker = new google.maps.Marker({
             map: map,
             position: latlng
@@ -61,12 +64,26 @@
         map.setCenter(marker.getPosition());
 
       };
+      
+      function updatePath(latlng){
+        if (path)
+          path.setMap(null);
+        pathCoordinates.push(latlng);
+        pathCoordinates = pathCoordinates.splice(-3); 
+        path = new google.maps.Polyline({
+          path: pathCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        path.setMap(map);
+      }
 
-      function updateAddress(coords){
-        geocoder.geocode({'latLng': coords}, function(results, status){
+      function updateAddress(latlng){
+        geocoder.geocode({'latLng': latlng}, function(results, status){
           if ( status == google.maps.GeocoderStatus.OK) {
             if (results[1]){
-              debugger;
               currentAddress.text(results[1].formatted_address);
             }
           }
