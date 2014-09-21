@@ -130,15 +130,17 @@
 
                         snapshot.forEach(function(location){
                             var el = document.createElement('div');
-                            el.html = snapshot.val();
-                            el.class = 'list-item';
-                            // list.appendChild(el);
+                            var val = location.val();
+                            var time = new Date(val.timestamp);
+                            el.innerHTML = 'Location: ' + val.coords.lat + 'x' + val.coords.lng + ' Time: ' + time.getHours() + ':' + time.getMinutes();
+                            el.className = 'list-item';
+                            // list[0].appendChild(el);
                         });
                     });
                 </script>
-                <div class="list-group"></div>
             </div>
     </div>
+    <div class="list-group"></div>
 </div>
 
 
